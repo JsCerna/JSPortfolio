@@ -12,10 +12,12 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@algolia/client-search": "latest",
     "@headlessui/react": "2.2.0",
     "@next/bundle-analyzer": "15.0.2",
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/typography": "^0.5.15",
+    "algoliasearch": "latest",
     "autoprefixer": "^10.4.13",
     "body-scroll-lock": "^4.0.0-beta.0",
     "contentlayer2": "0.5.3",
@@ -29,7 +31,7 @@
     "next-themes": "^0.3.0",
     "pliny": "0.4.0",
     "postcss": "^8.4.24",
-    "react": "rc",
+    "react": "18.2.0",
     "react-dom": "rc",
     "reading-time": "1.5.0",
     "rehype-autolink-headings": "^7.1.0",
@@ -74,5 +76,8 @@
       "prettier --write"
     ]
   },
-  "packageManager": "yarn@3.6.1"
+  "packageManager": "yarn@3.6.1",
+  "engines": {
+    "node": ">=18"
+  }
 }
