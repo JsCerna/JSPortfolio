@@ -2,15 +2,15 @@ import { InlineCode } from "@/once-ui/components";
 
 const createI18nContent = (t) => {
     const person = {
-        firstName: 'Selene',
-        lastName:  'Yu',
+        firstName: 'Jose',
+        lastName:  'Cerna',
         get name() {
             return `${this.firstName} ${this.lastName}`;
         },
         role:      t("person.role"),
         avatar:    '/images/avatar.jpg',
-        location:  'Asia/Jakarta',        // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-        languages: ['English', 'Bahasa']  // optional: Leave the array empty if you don't want to display languages
+        location:  'Australia/Chile',        // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+        languages: ['English', 'Spanish']  // optional: Leave the array empty if you don't want to display languages
     }
 
     const newsletter = {
@@ -65,7 +65,7 @@ const createI18nContent = (t) => {
         },
         calendar: {
             display: true,
-            link: 'https://cal.com'
+            link: 'https://calendly.com/cotecerna'
         },
         intro: {
             display: true,
@@ -83,7 +83,7 @@ const createI18nContent = (t) => {
                     achievements: t("about.work.experiences.FLY.achievements").split(";"),
                     images: [ // optional: leave the array empty if you don't want to display images
                         {
-                            src: '/images/projects/project-01/cover-01.jpg',
+                            src: '/images/work/surf.jpg',
                             alt: 'Once UI Project',
                             width: 16,
                             height: 9
@@ -91,12 +91,21 @@ const createI18nContent = (t) => {
                     ]
                 },
                 {
-                    company: 'Creativ3',
-                    timeframe: t("about.work.experiences.Creativ3.timeframe"),
-                    role: t("about.work.experiences.Creativ3.role"),
-                    achievements: t("about.work.experiences.Creativ3.achievements").split(";"),
-                    images: [ ]
-                }
+                    company: 'FLY',
+                    timeframe: t("about.work.experiences.FLY.timeframe"),
+                    role: t("about.work.experiences.FLY.role"),
+                    achievements: t("about.work.experiences.FLY.achievements").split(";"),
+                    images: [ // optional: leave the array empty if you don't want to display images
+                        {
+                            src: '/images/work/aus.jpg',
+                            alt: 'Once UI Project',
+                            width: 16,
+                            height: 9
+                        }
+                    ]
+                },
+
+                
             ]
         },
         studies: {

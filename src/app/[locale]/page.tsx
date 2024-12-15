@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Heading, Flex, Text, Button,  Avatar, RevealFx, Arrow } from '@/once-ui/components';
+import { Heading, Flex, Text, Button, Avatar, RevealFx, Arrow } from '@/once-ui/components';
 import { Projects } from '@/components/work/Projects';
 
 import { baseURL, routes, renderContent } from '@/app/resources'; 
@@ -12,8 +12,8 @@ import { useTranslations } from 'next-intl';
 export async function generateMetadata(
 	{params: {locale}}: { params: { locale: string }}
 ) {
-	const t = await getTranslations();
-    const { home } = renderContent(t);
+	const t = await getTranslations();  // Aseguramos de pasar el 'locale' a 'getTranslations'
+	const { home } = renderContent(t); // Obtener el contenido del home desde renderContent(t)
 	const title = home.title;
 	const description = home.description;
 	const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
@@ -45,9 +45,10 @@ export async function generateMetadata(
 export default function Home(
 	{ params: {locale}}: { params: { locale: string }}
 ) {
-	unstable_setRequestLocale(locale);
-	const t = useTranslations();
-	const { home, about, person, newsletter } = renderContent(t);
+	unstable_setRequestLocale(locale);  // Establecer el locale de la solicitud
+	const t = useTranslations();  // Obtener traducciones usando useTranslations
+	const { home, about, person, newsletter } = renderContent(t);  // Acceder al contenido basado en traducciones
+
 	return (
 		<Flex
 			maxWidth="m" fillWidth gap="xl"
@@ -78,77 +79,63 @@ export default function Home(
 				fillWidth
 				direction="column"
 				paddingY="l" gap="m">
-					<Flex
-						direction="column"
-						fillWidth maxWidth="s">
-						<RevealFx
-							translateY="4" fillWidth justifyContent="flex-start" paddingBottom="m">
-							<Heading
-								wrap="balance"
-								variant="display-strong-l">
-								{home.headline}
-							</Heading>
-						</RevealFx>
-						<RevealFx
-							translateY="8" delay={0.2} fillWidth justifyContent="flex-start" paddingBottom="m">
-							<Text
-								wrap="balance"
-								onBackground="neutral-weak"
-								variant="heading-default-xl">
-								{home.subline}
-							</Text>
-						</RevealFx>
-						<RevealFx translateY="12" delay={0.4}>
-							<Flex fillWidth>
-								<Button
-									id="about"
-									data-border="rounded"
-									href={`/${locale}/about`}
-									variant="tertiary"
-									size="m">
-									<Flex
-										gap="8"
-										alignItems="center">
-										{about.avatar.display && (
-											<Avatar
-												style={{marginLeft: '-0.75rem', marginRight: '0.25rem'}}
-												src={person.avatar}
-												size="m"/>
-											)}
-											{t("about.title")}
-											<Arrow trigger="#about"/>
-									</Flex>
-								</Button>
-							</Flex>
-						</RevealFx>
-					</Flex>
-				
-			</Flex>
-			<RevealFx translateY="16" delay={0.6}>
-				<Projects range={[1,1]} locale={locale}/>
-			</RevealFx>
-			{routes['/blog'] && (
 				<Flex
-					fillWidth gap="24"
-					mobileDirection="column">
-					<Flex flex={1} paddingLeft="l">
+					direction="column"
+					fillWidth maxWidth="s">
+					<RevealFx
+						translateY="4" fillWidth justifyContent="flex-start" paddingBottom="m">
 						<Heading
-							as="h2"
-							variant="display-strong-xs"
-							wrap="balance">
-							Latest from the blog
+							wrap="balance"
+							variant="display-strong-l">
+							{home.headline}
 						</Heading>
-					</Flex>
-					<Flex
-						flex={3} paddingX="20">
-						<Posts range={[1,2]} columns="2" locale={locale}/>
-					</Flex>
+					</RevealFx>
+					<RevealFx
+						translateY="8" delay={0.2} fillWidth justifyContent="flex-start" paddingBottom="m">
+						<Text
+							wrap="balance"
+							onBackground="neutral-weak"
+							variant="heading-default-xl">
+							{home.subline}
+						</Text>
+					</RevealFx>
+					<RevealFx translateY="12" delay={0.4}>
+						<Flex fillWidth>
+							<Button
+								id="about"
+								data-border="rounded"
+								href={`/${locale}/about`}
+								variant="tertiary"
+								size="m">
+								<Flex
+									gap="8"
+									alignItems="center">
+									{about.avatar.display && (
+										<Avatar
+											style={{ marginLeft: '-0.75rem', marginRight: '0.25rem' }}
+											src={person.avatar}
+											size="m" />
+									)}
+									{t("about.title")}
+									<Arrow trigger="#about" />
+								</Flex>
+							</Button>
+						</Flex>
+					</RevealFx>
 				</Flex>
-			)}
-			<Projects range={[2]} locale={locale}/>
-			{ newsletter.display &&
-				<Mailchimp newsletter={newsletter} />
-			}
+			</Flex>
+
+			{/* Imagen badge con hipervínculo */}
+			<Flex justifyContent="center" marginY="xl">
+				<a href="https://www.credly.com/badges/0e7a7427-01ae-4958-852a-42f6c6919c7d/public_url" target="_blank" rel="noopener noreferrer">
+					<img src="/images/home/dev.png" alt="Badge" style={{ maxWidth: '100%', height: 'auto' }} />
+				</a>
+			</Flex>
+
+			{/* Sección de Newsletter */}
+			{newsletter.display && <Mailchimp newsletter={newsletter} />}
+			
 		</Flex>
 	);
 }
+
