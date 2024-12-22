@@ -92,8 +92,8 @@ export default function WorkPage(
                                         border: '1px solid #ddd',
                                         borderRadius: '8px',
                                         overflow: 'hidden',
-                                        width: image.width,
-                                        height: image.height,
+                                        width: `${image.width * 10}px`, // Escala el ancho
+                                        height: `${image.height * 10}px`, // Escala el alto
                                     }}
                                 >
                                     <img
